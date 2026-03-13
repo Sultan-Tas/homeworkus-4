@@ -18,8 +18,8 @@ public class Main {
         System.out.println("=== Homework 4 Demo: Bridge + Composite ===\n");
 
         // TODO: build leaves
-        HeroUnit warrior = new HeroUnit("Arthas", 140, 30);
-        HeroUnit mage = new HeroUnit("Jaina", 90, 40);
+        HeroUnit warrior = new HeroUnit("Durin", 140, 30);
+        HeroUnit mage = new HeroUnit("Aleria", 90, 50);
         EnemyUnit goblin = new EnemyUnit("Goblin", 70, 20);
         EnemyUnit orc = new EnemyUnit("Orc", 120, 25);
 
@@ -28,12 +28,12 @@ public class Main {
         heroes.add(warrior);
         heroes.add(mage);
 
-        PartyComposite frontline = new PartyComposite("Frontline");
-        frontline.add(goblin);
-        frontline.add(orc);
+        PartyComposite frontLine = new PartyComposite("Front Line");
+        frontLine.add(goblin);
+        frontLine.add(orc);
 
         RaidGroup enemies = new RaidGroup("Enemy Raid");
-        enemies.add(frontline);
+        enemies.add(frontLine);
 
         System.out.println("--- Team Structures ---");
         heroes.printTree("");
