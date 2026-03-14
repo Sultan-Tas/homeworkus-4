@@ -20,8 +20,10 @@ public class Main {
         // TODO: build leaves
         HeroUnit warrior = new HeroUnit("Durin", 140, 30);
         HeroUnit mage = new HeroUnit("Aleria", 90, 50);
+        HeroUnit cleric = new HeroUnit("Cleric", 90, 50);
         EnemyUnit goblin = new EnemyUnit("Goblin", 70, 20);
         EnemyUnit orc = new EnemyUnit("Orc", 120, 25);
+        EnemyUnit shadow_archer = new EnemyUnit("Shadow Archer", 50, 40);
 
         // TODO: build composite hierarchy (nested)
         PartyComposite heroes = new PartyComposite("Heroes");
@@ -31,6 +33,9 @@ public class Main {
         PartyComposite frontLine = new PartyComposite("Front Line");
         frontLine.add(goblin);
         frontLine.add(orc);
+
+        PartyComposite backLine = new PartyComposite("Back Line");
+        frontLine.add(shadow_archer);
 
         RaidGroup enemies = new RaidGroup("Enemy Raid");
         enemies.add(frontLine);

@@ -25,9 +25,10 @@ public abstract class Skill {
         return effect.getEffectName();
     }
 
-    protected int resolvedDamage() {
+    public int resolvedDamage() {
         return effect.computeDamage(basePower);
     }
 
     public abstract void cast(CombatNode target);
+    public abstract void cast(CombatNode target, double damageModifier);
 }
