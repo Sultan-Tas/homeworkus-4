@@ -17,34 +17,37 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== Homework 4 Demo: Bridge + Composite ===\n");
 
-        // TODO: build leaves
-        HeroUnit warrior = new HeroUnit("Durin", 140, 30);
+        //build leaves
+        HeroUnit warrior = new HeroUnit("Durin", 160, 30);
         HeroUnit mage = new HeroUnit("Aleria", 90, 50);
-        HeroUnit cleric = new HeroUnit("Cleric", 90, 50);
+        HeroUnit cleric = new HeroUnit("Cleric", 40, 30);
+
         EnemyUnit goblin = new EnemyUnit("Goblin", 70, 20);
         EnemyUnit orc = new EnemyUnit("Orc", 120, 25);
         EnemyUnit shadow_archer = new EnemyUnit("Shadow Archer", 50, 40);
 
-        // TODO: build composite hierarchy (nested)
+        //build composite hierarchy (nested)
         PartyComposite heroes = new PartyComposite("Heroes");
         heroes.add(warrior);
         heroes.add(mage);
+        heroes.add(cleric);
 
         PartyComposite frontLine = new PartyComposite("Front Line");
         frontLine.add(goblin);
         frontLine.add(orc);
 
         PartyComposite backLine = new PartyComposite("Back Line");
-        frontLine.add(shadow_archer);
+        backLine.add(shadow_archer);
 
         RaidGroup enemies = new RaidGroup("Enemy Raid");
         enemies.add(frontLine);
+        enemies.add(backLine);
 
         System.out.println("--- Team Structures ---");
         heroes.printTree("");
         enemies.printTree("");
 
-        // TODO: Bridge combinations
+        //Bridge combinations
         Skill slashFire = new SingleTargetSkill("Slash", 20, new FireEffect());
         Skill slashIce = new SingleTargetSkill("Slash", 20, new IceEffect());
         Skill stormFire = new AreaSkill("Storm", 15, new FireEffect());
@@ -54,7 +57,7 @@ public class Main {
         System.out.println(slashIce.getSkillName() + " using " + slashIce.getEffectName());
         System.out.println(stormFire.getSkillName() + " using " + stormFire.getEffectName());
 
-        // TODO: run raid
+        // run raid
         RaidEngine engine = new RaidEngine().setRandomSeed(42L);
         RaidResult result = engine.runRaid(heroes, enemies, slashFire, stormFire);
 

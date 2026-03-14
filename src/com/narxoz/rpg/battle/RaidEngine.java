@@ -46,7 +46,7 @@ public class RaidEngine {
         while(teamA.isAlive() && teamB.isAlive()) {
             rounds++;
             result.addLine("Round " + rounds + ":");
-            boolean critTeamA = random.nextInt(100) < 10;
+            boolean critTeamA = random.nextInt(100) < 20;
             if(critTeamA){
                 teamASkill.cast(teamB, 1.5);
             }
@@ -55,10 +55,10 @@ public class RaidEngine {
             }
             result.addLine(teamA.getName() + "► used [" + teamASkill.getEffectName() + " " + teamASkill.getSkillName() + "] on \"" + teamB.getName() + "\"");
             if(critTeamA) {
-                result.addLine("\t\"" + teamB.getName() + "\" took " + teamASkill.resolvedDamage() + " damage");
+                result.addLine("\t\"" + teamB.getName() + "\" took " + (int) (teamASkill.resolvedDamage()*1.5) + " damage");
             }
             else{
-                result.addLine("\t\"" + teamB.getName() + "\" took " + (int) (teamASkill.resolvedDamage()*1.5) + " damage");
+                result.addLine("\t\"" + teamB.getName() + "\" took " + teamASkill.resolvedDamage() + " damage");
             }
             if(teamB.isAlive()) {
                 teamBSkill.cast(teamA);

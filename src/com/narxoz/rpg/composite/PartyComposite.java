@@ -1,8 +1,6 @@
 package com.narxoz.rpg.composite;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class PartyComposite implements CombatNode {
     private final String name;
@@ -76,9 +74,15 @@ public class PartyComposite implements CombatNode {
 
     private List<CombatNode> getAliveChildren() {
         List<CombatNode> aliveChildren = new ArrayList<>();
-        for(CombatNode unit : children){
-            if(unit.isAlive() && unit.getChildren().isEmpty()){
-                aliveChildren.add(unit);
+        Queue<CombatNode> queue = new LinkedList<>();
+        queue.addAll(children);
+        while(!queue.isEmpty()){
+            CombatNode current = queue.remove();
+            if(current.getChildren().isEmpty() && current.isAlive()){
+                aliveChildren.add(current);
+            }
+            else{
+                queue.addAll(current.getChildren());
             }
         }
         return aliveChildren;
